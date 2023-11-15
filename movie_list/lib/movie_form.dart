@@ -22,7 +22,7 @@ class _ShopFormPageState extends State<ShopFormPage> {
         'Form Tambah Produk',
       ),
     ),
-    backgroundColor: Colors.indigo,
+    backgroundColor: Color.fromARGB(255, 177, 132, 255),
     foregroundColor: Colors.white,
   ),
   // TODO: Tambahkan drawer yang sudah dibuat di sini
@@ -38,8 +38,8 @@ class _ShopFormPageState extends State<ShopFormPage> {
           padding: const EdgeInsets.all(8.0),
           child: TextFormField(
             decoration: InputDecoration(
-              hintText: "Nama Produk",
-              labelText: "Nama Produk",
+              hintText: "Nama Film",
+              labelText: "Nama Film",
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(5.0),
               ),
@@ -113,18 +113,48 @@ Align(
   child: Padding(
     padding: const EdgeInsets.all(8.0),
     child: ElevatedButton(
-      style: ButtonStyle(
-        backgroundColor:
-            MaterialStateProperty.all(Colors.indigo),
-      ),
-      onPressed: () {
-        if (_formKey.currentState!.validate()) {}
-      },
-      child: const Text(
-        "Save",
-        style: TextStyle(color: Colors.white),
-      ),
-    ),
+          style: ButtonStyle(
+            backgroundColor:
+                MaterialStateProperty.all(Color.fromARGB(255, 177, 132, 255)),
+          ),
+          onPressed: () {
+            if (_formKey.currentState!.validate()) {
+              showDialog(
+                context: context,
+                builder: (context) {
+                  return AlertDialog(
+                    title: const Text('Film baru berhasil tersimpan'),
+                    content: SingleChildScrollView(
+                      child: Column(
+                        crossAxisAlignment:
+                            CrossAxisAlignment.start,
+                        children: [
+                          Text('Nama: $_name'),
+                          // TODO: Munculkan value-value lainnya
+                          Text('Harga Tiket: $_price'),
+                          Text('Deskripsi: $_description'),
+                        ],
+                      ),
+                    ),
+                    actions: [
+                      TextButton(
+                        child: const Text('OK'),
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                      ),
+                    ],
+                  );
+                },
+              );
+            _formKey.currentState!.reset();
+            }
+          },
+          child: const Text(
+            "Save",
+            style: TextStyle(color: Colors.white),
+          ),
+        ),
   ),
 ),
       ]

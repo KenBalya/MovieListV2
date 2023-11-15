@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:movie_list/widgets/left_drawer.dart';
+import 'package:movie_list/movie_form.dart';
 
 class MyHomePage extends StatelessWidget {
   MyHomePage({Key? key}) : super(key: key);
   final List<MovieItem> items = [
-    MovieItem("Lihat Item", Icons.checklist),
-    MovieItem("Tambah Item", Icons.add_shopping_cart),
+    MovieItem("Lihat Daftar Film", Icons.checklist),
+    MovieItem("Tambah Film", Icons.add_shopping_cart),
     MovieItem("Logout", Icons.logout),
 ];
 
@@ -73,7 +74,7 @@ class MovieCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: Color.fromARGB(255, 181, 68, 191),
+      color: Color.fromARGB(255, 177, 132, 255),
       child: InkWell(
         // Area responsive terhadap sentuhan
         onTap: () {
@@ -82,6 +83,13 @@ class MovieCard extends StatelessWidget {
             ..hideCurrentSnackBar()
             ..showSnackBar(SnackBar(
                 content: Text("Kamu telah menekan tombol ${item.name}!")));
+            if (item.name == "Tambah Film") {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ShopFormPage(),
+                  ));
+            }
         },
         child: Container(
           // Container untuk menyimpan Icon dan Text

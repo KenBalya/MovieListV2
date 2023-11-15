@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movie_list/menu.dart';
+import 'package:movie_list/movie_form.dart';
 // TODO: Impor halaman ShopFormPage jika sudah dibuat
 
 class LeftDrawer extends StatelessWidget {
@@ -13,12 +14,12 @@ class LeftDrawer extends StatelessWidget {
           const DrawerHeader(
             // TODO: Bagian drawer header
             decoration: BoxDecoration(
-    color: Colors.indigo,
+    color: Color.fromARGB(255, 177, 132, 255),
   ),
   child: Column(
     children: [
       Text(
-        'Shopping List',
+        'Movie List V2',
         textAlign: TextAlign.center,
         style: TextStyle(
           fontSize: 30,
@@ -27,8 +28,14 @@ class LeftDrawer extends StatelessWidget {
         ),
       ),
       Padding(padding: EdgeInsets.all(10)),
-      Text("Catat seluruh keperluan belanjamu di sini!",
+      Text("Catat seluruh film yang mau kamu tonton disini!",
           // TODO: Tambahkan gaya teks dengan center alignment, font ukuran 15, warna putih, dan weight biasa
+          textAlign: TextAlign.center,
+        style: TextStyle(
+          fontSize: 15,
+          fontWeight: FontWeight.normal,
+          color: Colors.white,
+        ),
           ),
     ],
   ),
@@ -48,13 +55,14 @@ class LeftDrawer extends StatelessWidget {
 ),
 ListTile(
   leading: const Icon(Icons.add_shopping_cart),
-  title: const Text('Tambah Produk'),
+  title: const Text('Tambah Daftar Film'),
   // Bagian redirection ke ShopFormPage
   onTap: () {
-    /*
-    TODO: Buatlah routing ke ShopFormPage di sini,
-    setelah halaman ShopFormPage sudah dibuat.
-    */
+    Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => ShopFormPage(),
+        ));
   },
 ),
         ],
