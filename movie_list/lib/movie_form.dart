@@ -108,6 +108,25 @@ Padding(
     },
   ),
 ),
+Align(
+  alignment: Alignment.bottomCenter,
+  child: Padding(
+    padding: const EdgeInsets.all(8.0),
+    child: ElevatedButton(
+      style: ButtonStyle(
+        backgroundColor:
+            MaterialStateProperty.all(Colors.indigo),
+      ),
+      onPressed: () {
+        if (_formKey.currentState!.validate()) {}
+      },
+      child: const Text(
+        "Save",
+        style: TextStyle(color: Colors.white),
+      ),
+    ),
+  ),
+),
       ]
           
         )
