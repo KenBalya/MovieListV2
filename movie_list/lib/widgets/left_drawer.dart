@@ -54,7 +54,7 @@ class LeftDrawer extends StatelessWidget {
   },
 ),
 ListTile(
-  leading: const Icon(Icons.add_shopping_cart),
+  leading: const Icon(Icons.add_to_queue_rounded),
   title: const Text('Tambah Daftar Film'),
   // Bagian redirection ke ShopFormPage
   onTap: () {

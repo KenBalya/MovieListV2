@@ -5,8 +5,8 @@ import 'package:movie_list/movie_form.dart';
 class MyHomePage extends StatelessWidget {
   MyHomePage({Key? key}) : super(key: key);
   final List<MovieItem> items = [
-    MovieItem("Lihat Daftar Film", Icons.checklist),
-    MovieItem("Tambah Film", Icons.add_shopping_cart),
+    MovieItem("Lihat Daftar Film", Icons.movie_creation_outlined ),
+    MovieItem("Tambah Film", Icons.add_to_queue_rounded ),
     MovieItem("Logout", Icons.logout),
 ];
 
