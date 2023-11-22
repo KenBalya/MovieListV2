@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:movie_list/menu.dart';
 import 'dart:convert';
 import 'package:movie_list/models/movie.dart';
 import 'package:movie_list/widgets/left_drawer.dart';
@@ -38,6 +39,14 @@ Future<List<Movie>> fetchProduct() async {
 Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.black),
+          onPressed: () => Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => MyHomePage(),
+                  )),
+        ),
         title: const Text('Movie'),
         ),
         drawer: const LeftDrawer(),
