@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:movie_list/list_movies.dart';
+import 'package:movie_list/login.dart';
 import 'package:movie_list/widgets/left_drawer.dart';
 import 'package:movie_list/movie_form.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:provider/provider.dart';
 
 class MyHomePage extends StatelessWidget {
   MyHomePage({Key? key}) : super(key: key);
@@ -73,11 +77,12 @@ class MovieCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final request = context.watch<CookieRequest>();
     return Material(
       color: Color.fromARGB(255, 177, 132, 255),
       child: InkWell(
         // Area responsive terhadap sentuhan
-        onTap: () {
+        onTap: () async{
           // Memunculkan SnackBar ketika diklik
           ScaffoldMessenger.of(context)
             ..hideCurrentSnackBar()
@@ -89,6 +94,32 @@ class MovieCard extends StatelessWidget {
                   MaterialPageRoute(
                     builder: (context) => ShopFormPage(),
                   ));
+            }else if(item.name == "Lihat Daftar Film"){
+              Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => MoviePage(),
+                  ));
+            }else if(item.name == "Logout"){
+              final response = await request.logout(
+            // TODO: Ganti URL dan jangan lupa tambahkan trailing slash (/) di akhir URL!
+            "http://127.0.0.1:8000/auth/logout/");
+        String message = response["message"];
+        if (response['status']) {
+          String uname = response["username"];
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text("$message Sampai jumpa, $uname."),
+          ));
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (context) => const LoginPage()),
+          );
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text("$message"),
+          ));
+        }
+
             }
         },
         child: Container(
